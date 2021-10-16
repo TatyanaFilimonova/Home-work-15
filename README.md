@@ -19,7 +19,7 @@ Sport_Spyders powered by Scrapy:
 
    To have an ability to import Django models into Scrapy, please change path in Scrapy settings.py:
    
-      sys.path.insert(0, '/users/filim/goit/rest_api')] 
+      sys.path.insert(0,'users/filim/goit/hw15/rest_api') 
    
    for ABSOLUTE path to you Django project.
   
