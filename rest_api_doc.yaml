@@ -1,0 +1,205 @@
+swagger: '2.0'
+info:
+  title: Sport events API
+  description: Project description
+  termsOfService: Public service
+  contact:
+    email: no@email.provided
+  license:
+    name: BSD License
+  version: v1
+host: 127.0.0.1:8000
+schemes:
+  - http
+basePath: /rest_server
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  Basic:
+    type: basic
+security:
+  - Basic: []
+paths:
+  /articles/{name}:
+    get:
+      operationId: articles_read
+      description: ''
+      parameters:
+        - name: page
+          in: query
+          description: A page number within the paginated result set.
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+              - count
+              - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Article'
+      tags:
+        - articles
+    parameters:
+      - name: name
+        in: path
+        required: true
+        type: string
+  /articles/{name}/lastupdate/{lastupdate}:
+    get:
+      operationId: articles_lastupdate_read
+      description: ''
+      parameters:
+        - name: page
+          in: query
+          description: A page number within the paginated result set.
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+              - count
+              - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Article'
+      tags:
+        - articles
+    parameters:
+      - name: lastupdate
+        in: path
+        required: true
+        type: string
+      - name: name
+        in: path
+        required: true
+        type: string
+  /sports:
+    get:
+      operationId: sports_list
+      description: ''
+      parameters:
+        - name: limit
+          in: query
+          description: Number of results to return per page.
+          required: false
+          type: integer
+        - name: offset
+          in: query
+          description: The initial index from which to return the results.
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+              - count
+              - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Sports'
+      tags:
+        - sports
+    parameters: []
+definitions:
+  Article:
+    required:
+      - header
+      - short_text
+      - full_text
+      - tourney
+      - post_date
+      - source
+    type: object
+    properties:
+      header:
+        title: Header
+        type: string
+        minLength: 1
+      short_text:
+        title: Short text
+        type: string
+        minLength: 1
+      full_text:
+        title: Full text
+        type: string
+        minLength: 1
+      tourney:
+        title: Tourney
+        type: string
+        maxLength: 50
+        minLength: 1
+      author:
+        title: Author
+        type: string
+        maxLength: 50
+        x-nullable: true
+      post_date:
+        title: Post date
+        type: string
+        maxLength: 50
+        minLength: 1
+      source:
+        title: Source
+        type: string
+        minLength: 1
+  Sports:
+    required:
+      - name
+    type: object
+    properties:
+      name:
+        title: Name
+        type: string
+        maxLength: 50
+        minLength: 1
+      last_modified:
+        title: Last modified
+        type: string
+        format: date-time
