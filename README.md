@@ -16,6 +16,12 @@ Sport_Spyders powered by Scrapy:
   - Sports
   
   - Article 
+
+   To have an ability to import Django models into Scrapy, please change path in Scrapy settings.py:
+   
+      sys.path.insert(0, '/users/filim/goit/rest_api')] 
+   
+   for ABSOLUTE path to you Django project.
   
 To launch spyders: 
 
@@ -33,5 +39,4 @@ To get DOC for API:
   - YAML DOC localhost/doc?format=.yaml
   
   Please find a copy of .yaml file in project root.
-  
   
