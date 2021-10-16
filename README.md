@@ -40,3 +40,4 @@ To get DOC for API:
   
   Please find a copy of .yaml file in project root.
   
+Have a fun! (I had a lot of...)
