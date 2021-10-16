@@ -11,18 +11,17 @@ Sport_Spyders powered by Scrapy:
  
    - Rest_server
   
- Database models (powered by Postgres and mapped by Django ORM for all packages - spyders and rest_api)
+ Database models (powered by Postgres and mapped by Django ORM for all the packages - spyders and rest_api)
  
   - Sports
   
   - Article 
 
-   To have an ability to import Django models into Scrapy, please change path in Scrapy settings.py:
+   To have an ability to import Django models into Scrapy, please change path in Scrapy settings.py  for ABSOLUTE path to you Django project:
    
-      sys.path.insert(0,'users/filim/goit/hw15/rest_api') 
+      sys.path.insert(0,'/users/filim/goit/hw15/rest_api') 
    
-   for ABSOLUTE path to you Django project.
-  
+    
 To launch spyders: 
 
   - cd [sport_spyder]
