@@ -34,8 +34,8 @@ To launch API on your localhost:8000:
    
 To get DOC for API:
 
-  - UI DOC localhost:8000/doc
-  - YAML DOC localhost/doc?format=.yaml
+  - For UI DOC browse: localhost:8000/doc
+  - For YAML DOC browse: localhost/doc?format=.yaml
   
   Please find a copy of .yaml file in project root.
   
