@@ -4,8 +4,8 @@ Project structure
 
 Sport_Spyders powered by Scrapy:
 
-   - Tennis
-   - Volleyball
+   - Tennis (https://www.wtatennis.com/news/)
+   - Volleyball (https://en.volleyballworld.com/volleyball/competitions/vnl-2021/news/)
   
  Rest-API powered by Django + Django rest_framework + drf_yasg documentation
  
