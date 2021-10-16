@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(0, 'C:/Users/filim/Documents/goit/pythonProject/rest_api')
+sys.path.insert(0, 'users/filim/goit/hw15/rest_api')
 # Setting up django's settings module name.
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'rest_api.settings'
