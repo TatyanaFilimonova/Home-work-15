@@ -7,7 +7,7 @@ Sport_Spyders powered by Scrapy:
    - Tennis
    - Volleyball
   
- Rest-API powered by Django  
+ Rest-API powered by Django + Django rest_framework + drf_yasg documentation
  
    - Rest_server
   
@@ -25,13 +25,13 @@ Sport_Spyders powered by Scrapy:
   
 To launch spyders: 
 
- - cd [sport_spyder]
+  - cd [sport_spyder]
   - scrapy crawl [spider]
   
 To launch API on your localhost:8000:
 
   - cd [rest_api]
-   - py manage.py runserver
+  - py manage.py runserver
    
 To get DOC for API:
 
