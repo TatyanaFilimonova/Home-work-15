@@ -10,11 +10,11 @@ from rest_framework.exceptions import NotFound, APIException
 from django.core.exceptions import BadRequest
 from rest_framework import status
 
+
 class NoContent(APIException):
     status_code = status.HTTP_204_NO_CONTENT
     default_detail = ('No content by your request')
     default_code = 'no_content'
-
 
 
 class ArticlesView(ListAPIView):
