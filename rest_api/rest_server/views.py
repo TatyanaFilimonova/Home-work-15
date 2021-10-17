@@ -1,25 +1,34 @@
 import http
 
-from rest_framework.generics import ListAPIView, GenericAPIView
+from rest_framework.generics import ListAPIView
 from .serializers import ArticleSerializer, SportsSerializer
 from .models import Article, Sports, objects
 from datetime import datetime
-from rest_framework.response import Response
-from .services import PaginationArticles
+from .services import BadRequest, NoContent, PaginationArticles, ArticleFilter
 from rest_framework.exceptions import NotFound, APIException
 from django.core.exceptions import BadRequest
-from rest_framework import status
+from django_filters.rest_framework import DjangoFilterBackend
 
+class ArticlesViewFilter(ListAPIView):
 
-class NoContent(APIException):
-    status_code = status.HTTP_204_NO_CONTENT
-    default_detail = ('No content by your request')
-    default_code = 'no_content'
+    serializer_class = ArticleSerializer
+    filter_backends = (DjangoFilterBackend,)
+    pagination_class = PaginationArticles
+    filterset_class = ArticleFilter
+
+    def get_queryset(self):
+        queryset = Article.objects.all()
+        return queryset
 
 
 class ArticlesView(ListAPIView):
+
     serializer_class = ArticleSerializer
     pagination_class = PaginationArticles
+
+    def get_queryset(self):
+        queryset = Article.objects.all()
+        return queryset
 
     def get_sport(self, sport_name):
         sport_name = sport_name.lower().capitalize()
@@ -36,6 +45,7 @@ class ArticlesView(ListAPIView):
             return queryset
         else:
             raise NotFound(f"Couldn't find this kind of sport: {self.kwargs['name']}")
+
 
 
 class SportsView(ListAPIView):
@@ -70,6 +80,6 @@ class ArticlesFreshView(ArticlesView):
                 else:
                     raise NoContent("Don't have so fresh data")
             else:
-                raise NotFound('Invalid date format. Should be YYYY-mm--dd HH:MM:SS')
+                raise BadRequest('Invalid date format. Should be YYYY-mm--dd HH:MM:SS')
         else:
             raise NotFound(f"Couldn't find this kind of sport: {self.kwargs['name']}")
