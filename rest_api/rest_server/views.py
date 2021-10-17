@@ -11,6 +11,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 class ArticlesViewFilter(ListAPIView):
 
+    """Sport events news feed with backend filter by sport type"""
+
     serializer_class = ArticleSerializer
     filter_backends = (DjangoFilterBackend,)
     pagination_class = PaginationArticles
@@ -22,6 +24,9 @@ class ArticlesViewFilter(ListAPIView):
 
 
 class ArticlesView(ListAPIView):
+
+    """Sport events news feed with pagination facility"""
+
 
     serializer_class = ArticleSerializer
     pagination_class = PaginationArticles
@@ -50,7 +55,10 @@ class ArticlesView(ListAPIView):
 
 class SportsView(ListAPIView):
 
+    """List of available sport types"""
+
     serializer_class = SportsSerializer
+
 
     def get_queryset(self):
         sports = Sports.objects.all()
@@ -58,8 +66,10 @@ class SportsView(ListAPIView):
 
 
 class ArticlesFreshView(ArticlesView):
+
+    """Sport events news feed with last update check"""
+
     serializer_class = ArticleSerializer
-    pagination_class = PaginationArticles
 
     def convert_naive_to_aware_date(self, date_to_convert, sport_inst):
         timezone = sport_inst.last_modified.tzinfo
