@@ -22,6 +22,47 @@ securityDefinitions:
 security:
   - Basic: []
 paths:
+  /articles:
+    get:
+      operationId: articles_list
+      description: ''
+      parameters:
+        - name: name__name
+          in: query
+          description: ''
+          required: false
+          type: string
+        - name: page
+          in: query
+          description: A page number within the paginated result set.
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+              - count
+              - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Article'
+      tags:
+        - articles
+    parameters: []
   /articles/{name}:
     get:
       operationId: articles_read
